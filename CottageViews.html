@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>   
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<link rel="stylesheet" type="text/css" href="style/style.css" >
+	<title>Views of the Cottage - B &amp B Brenchley, Kent</title>
+</head>
+<script type="text/javascript" src="jquery/jquery-1.3.2.js"></script>
+<script type="text/javascript">
+function slideSwitch() {
+    var $active = $('#slideshow IMG.active');
+    var $next = $active.next();
+
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 1000, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+    setInterval( "slideSwitch()", 5000 );
+});
+
+</script>  	
+
+
+<style type="text/css">
+
+/*** set the width and height to match your images **/
+
+#slideshow {
+    position:relative;
+    height:400px;
+}
+
+#slideshow DIV {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+    opacity:0.0;
+    height: 400px;
+    background-color: #FFF;
+}
+
+#slideshow DIV.active {
+    z-index:10;
+    opacity:1.0;
+}
+
+#slideshow DIV.last-active {
+    z-index:9;
+}
+
+#slideshow DIV IMG {
+    height: 350px;
+    display: block;
+    border: 0;
+    margin-bottom: 10px;
+}
+
+</style>
+
+
+
+<body>
+	<div>
+		<img src="images/outsideCottage1.JPG" alt="Outside Woodlands cottage" class="active" >
+		<img src="images/outsideCottage2.JPG" alt="Outside Woodlands cottage from the top of the garden" >
+		<img src="images/insideCottage1.JPG" alt="the lounge" >
+		<img src="images/insideCottage2.JPG" alt="the kitchen" >
+	</div>
+</body>
+</html>

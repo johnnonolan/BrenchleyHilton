@@ -1,0 +1,133 @@
+		body, html {
+			color : black;
+			background : #BFBF30;
+			padding: 0;
+			margin: 0;
+			font-family : Helvetica, Arial,  sans-serif;
+			/*clear : both;*/
+		}
+	
+		#header {
+			padding:5px 10px;
+			background:#FFDE40;
+		}
+		
+		
+		#menu {
+			font-family : Arial, Helvetica, sans-serif;
+			font-weight : bold;
+			/* color : blue; */
+			background-color : #82b22c;
+			/* background-color : #639a00;			 */
+			float : left;
+		}
+		
+		
+		#nav {
+			padding:5px 10px;
+			/* background:#c99; */
+			background-color : #ffd300;
+		}
+
+		
+		#nav ul {
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		
+		
+		
+		#nav li {
+			display:inline;
+			margin:0;
+			padding:0;
+		}
+
+				
+		#content {
+			
+			float:left;
+			width:480px;
+			padding:10px;
+			background:#FFF;
+		}
+		
+		
+		#wrap {
+			width:750px;
+			margin: 0 auto;
+			background:#FFE773;
+		}
+		
+		
+		#footer {
+			clear:both;
+			background:#A68900;
+			padding:5px 10px;
+		}
+		#sidebar {
+			 float:right;
+			 width:230px;
+			 padding : 10px;
+			 background:#FFE773;
+		 }
+		 
+
+ 		img {
+			/*float : right;*/
+		}
+		
+		#footer p {
+			margin:0;
+			
+		}
+		
+		#header h1, h2{
+			text-align: center;
+		}
+		
+		p {
+			text-indent: 2em; 
+			font: "Lucida Console", sans-serif;
+			text-align: center;
+		}
+		
+		p.outdent {
+			padding-left: 2em;
+			text-indent: -2em; 
+		}
+		
+		h1 {
+			margin 0;
+		}
+		
+		h2 {
+			margin:0 0 1em;
+		}
+		h1, h2, h3{
+			font-family: Arial, sans-serif;
+		}
+		
+			* html #footer {
+		height:1px;
+	}
+
+		
+		.bold {
+
+		 font-weight: bold;
+
+		 font-size: 1.5em;
+
+		}
+
+		.italic {
+
+		 font-style: italic;
+
+		 font-size: 1.5em;
+
+		}
+
+		
