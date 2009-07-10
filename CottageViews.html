@@ -5,12 +5,29 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<link rel="stylesheet" type="text/css" href="style/style.css" >
 	<title>Views of the Cottage - B &amp B Brenchley, Kent</title>
-</head>
-<script type="text/javascript" src="jquery/jquery-1.3.2.js"></script>
-<script type="text/javascript">
+
+	<script type="text/javascript" src="jquery-1.2.6.min.js"></script>
+	<script type="text/javascript">
+	
+	/*** 
+    Simple jQuery Slideshow Script
+    Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
+***/
 function slideSwitch() {
     var $active = $('#slideshow IMG.active');
-    var $next = $active.next();
+
+    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+    // use this to pull the images in the order they appear in the markup
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+
+    // uncomment the 3 lines below to pull the images in random order
+    
+    // var $sibs  = $active.siblings();
+    // var rndNum = Math.floor(Math.random() * $sibs.length );
+    // var $next  = $( $sibs[ rndNum ] );
+
 
     $active.addClass('last-active');
 
@@ -21,11 +38,11 @@ function slideSwitch() {
         });
 }
 
-$(function() {
-    setInterval( "slideSwitch()", 5000 );
-});
+	$(function() {
+	    setInterval( "slideSwitch()", 5000 );
+	});
 
-</script>  	
+	</script>  	
 
 
 <style type="text/css">
@@ -34,45 +51,78 @@ $(function() {
 
 #slideshow {
     position:relative;
-    height:400px;
+    height:350px;
 }
 
-#slideshow DIV {
+#slideshow IMG {
     position:absolute;
     top:0;
     left:0;
     z-index:8;
     opacity:0.0;
-    height: 400px;
-    background-color: #FFF;
+	width : 300;
 }
 
-#slideshow DIV.active {
+#slideshow IMG.active {
     z-index:10;
     opacity:1.0;
 }
 
-#slideshow DIV.last-active {
+#slideshow IMG.last-active {
     z-index:9;
-}
-
-#slideshow DIV IMG {
-    height: 350px;
-    display: block;
-    border: 0;
-    margin-bottom: 10px;
 }
 
 </style>
 
-
+</head>
 
 <body>
-	<div>
-		<img src="images/outsideCottage1.JPG" alt="Outside Woodlands cottage" class="active" >
-		<img src="images/outsideCottage2.JPG" alt="Outside Woodlands cottage from the top of the garden" >
-		<img src="images/insideCottage1.JPG" alt="the lounge" >
-		<img src="images/insideCottage2.JPG" alt="the kitchen" >
+	<div id="wrap">
+		<div id="header">
+			<h1>Woodlands Cottage Bed and Breakfast</h1>
+			<h2>Cottage Views</h2> 
+		
+		</div>
+		
+		<div id="nav">
+			<ul>
+				<li><a href="Default.html">Home</a></li>
+<!-- 			<li>Brenchley</li> -->
+				<li><a href="Directions.html">Directions</a></li>
+				<li>Views</li>
+<!-- 			<li>Map</li> -->
+			</ul>
+		</div>
+
+		<div id="content">
+			<div id="slideshow">
+				<img src="images/outsideCottage1.JPG" alt="Outside Woodlands cottage" class="active" >
+				<img src="images/outsideCottage2.JPG" alt="Outside Woodlands cottage from the top of the garden" >
+				<img src="images/insideCottage1.JPG" alt="the lounge" >
+				<img src="images/insideCottage2.JPG" alt="the kitchen" >
+			</div>
+		</div>
+		
+		<div id="sidebar">
+			<h2>Details</h2>
+			<ul>
+			<li><a href="#">Rates</a></li>
+			<li><a href="Directions.html">Directions</a></li>
+			<li><a href="#">Things to do</a></li>
+			</ul>
+		</div>
+		<div id="footer">
+			<p>
+		Tel: 01892 72 2707                          Fax: 01892 72 4946
+
+		<a href="mailto:chris.omalley@zen.co.uk?subject='B and B website enquiry'">
+			Email: chris.omalley@zen.co.uk
+		</a>         
+		Tariff: &#xa3;60 per night
+		</p>
+
+		</div>
+
 	</div>
 </body>
 </html>
