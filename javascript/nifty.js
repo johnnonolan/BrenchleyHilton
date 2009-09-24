@@ -1,210 +1,174 @@
-/*
- Automatic, anti-aliased rounded corners.
- 
- By Steven Wittens
- Based on http://pro.html.it/esempio/nifty/
- 
- Thanks to Jacob from Oddlabs.com for fixing two nasty bugs.
-*/
-
-function NiftyCheck() {
-  if(!document.getElementById || !document.createElement) {
-    return false;
-  }
-  var b = navigator.userAgent.toLowerCase();
-  if (b.indexOf("msie 5") > 0 && b.indexOf("opera") == -1) {
-    return false;
-  }
-  return true;
+function NiftyCheck(){
+if(!document.getElementById || !document.createElement)
+    return(false);
+isXHTML=/html\:/.test(document.getElementsByTagName('body')[0].nodeName);
+if(Array.prototype.push==null){Array.prototype.push=function(){
+      this[this.length]=arguments[0]; return(this.length);}}
+return(true);
 }
 
-function Rounded(selector, bk, color, sizex, sizey) {
-  var i;
-  var v = getElementsBySelector(selector);
-  var l = v.length;
-  for (i = 0; i < l; i++) {
-    AddTop(v[i], bk, color, sizex, sizey);
-    AddBottom(v[i], bk, color, sizex, sizey);
-  }
-}
+function Rounded(selector,wich,bk,color,opt){
+var i,prefixt,prefixb,cn="r",ecolor="",edges=false,eclass="",b=false,t=false;
 
-Math.sqr = function (x) {
-  return x*x;
-};
-
-function Blend(a, b, alpha) {
-  var ca = Array(
-    parseInt('0x' + a.substring(1, 3)), 
-    parseInt('0x' + a.substring(3, 5)), 
-    parseInt('0x' + a.substring(5, 7))
-  );
-  var cb = Array(
-    parseInt('0x' + b.substring(1, 3)), 
-    parseInt('0x' + b.substring(3, 5)), 
-    parseInt('0x' + b.substring(5, 7))
-  );
-  r = '0' + Math.round(ca[0] + (cb[0] - ca[0])*alpha).toString(16);
-  g = '0' + Math.round(ca[1] + (cb[1] - ca[1])*alpha).toString(16);
-  b = '0' + Math.round(ca[2] + (cb[2] - ca[2])*alpha).toString(16);
-  return '#'
-    + r.substring(r.length - 2)
-    + g.substring(g.length - 2)
-    + b.substring(b.length - 2);
-}
-
-function AddTop(el, bk, color, sizex, sizey) {
-  var i, j;
-  var d = document.createElement("div");
-  d.style.backgroundColor = bk;
-  d.className = "rounded";
-  var lastarc = 0;
-  for (i = 1; i <= sizey; i++) {
-    var coverage, arc2, arc3;
-    // Find intersection of arc with bottom of pixel row
-    arc = Math.sqrt(1.0 - Math.sqr(1.0 - i / sizey)) * sizex;
-    // Calculate how many pixels are bg, fg and blended.
-    var n_bg = sizex - Math.ceil(arc);
-    var n_fg = Math.floor(lastarc);
-    var n_aa = sizex - n_bg - n_fg;
-    // Create pixel row wrapper
-    var x = document.createElement("div");
-    var y = d;
-    x.style.margin = "0px " + n_bg +"px";
-    // Make a wrapper per anti-aliased pixel (at least one)
-    for (j = 1; j <= n_aa; j++) {
-      // Calculate coverage per pixel
-      // (approximates circle by a line within the pixel)
-      if (j == 1) {
-        if (j == n_aa) {
-          // Single pixel
-          coverage = ((arc + lastarc) * .5) - n_fg;
-        }
-        else {
-          // First in a run
-          arc2 = Math.sqrt(1.0 - Math.sqr(1.0 - (n_bg + 1) / sizex)) * sizey;
-          coverage = (arc2 - (sizey - i)) * (arc - n_fg - n_aa + 1) * .5;
-        }
-      }
-      else if (j == n_aa) {
-        // Last in a run
-        arc2 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j + 1) / sizex)) * sizey;
-        coverage = 1.0 - (1.0 - (arc2 - (sizey - i))) * (1.0 - (lastarc - n_fg)) * .5;
-      }
-      else {
-        // Middle of a run
-        arc3 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j) / sizex)) * sizey;
-        arc2 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j + 1) / sizex)) * sizey;
-        coverage = ((arc2 + arc3) * .5) - (sizey - i);
-      }
-      
-      x.style.backgroundColor = Blend(bk, color, coverage);
-      y.appendChild(x);
-      y = x;
-      var x = document.createElement("div");
-      x.style.margin = "0px 1px";
+if(color=="transparent"){
+    cn=cn+"x";
+    ecolor=bk;
+    bk="transparent";
     }
-    x.style.backgroundColor = color;
-    y.appendChild(x);
-    lastarc = arc;
-  }
-  el.insertBefore(d, el.firstChild);
+else if(opt && opt.indexOf("border")>=0){
+    var optar=opt.split(" ");
+    for(i=0;i<optar.length;i++)
+        if(optar[i].indexOf("#")>=0) ecolor=optar[i];
+    if(ecolor=="") ecolor="#666";
+    cn+="e";
+    edges=true;
+    }
+else if(opt && opt.indexOf("smooth")>=0){
+    cn+="a";
+    ecolor=Mix(bk,color);
+    }
+if(opt && opt.indexOf("small")>=0) cn+="s";
+prefixt=cn;
+prefixb=cn;
+if(wich.indexOf("all")>=0){t=true;b=true}
+else if(wich.indexOf("top")>=0) t="true";
+else if(wich.indexOf("tl")>=0){
+    t="true";
+    if(wich.indexOf("tr")<0) prefixt+="l";
+    }
+else if(wich.indexOf("tr")>=0){
+    t="true";
+    prefixt+="r";
+    }
+if(wich.indexOf("bottom")>=0) b=true;
+else if(wich.indexOf("bl")>=0){
+    b="true";
+    if(wich.indexOf("br")<0) prefixb+="l";
+    }
+else if(wich.indexOf("br")>=0){
+    b="true";
+    prefixb+="r";
+    }
+var v=getElementsBySelector(selector);
+var l=v.length;
+for(i=0;i<l;i++){
+    if(edges) AddBorder(v[i],ecolor);
+    if(t) AddTop(v[i],bk,color,ecolor,prefixt);
+    if(b) AddBottom(v[i],bk,color,ecolor,prefixb);
+    }
 }
 
-function AddBottom(el, bk, color, sizex, sizey) {
-  var i, j;
-  var d = document.createElement("div");
-  d.className = "rounded";
-  d.style.backgroundColor = bk;
-  var lastarc = 0;
-  for (i = 1; i <= sizey; i++) {
-    var coverage, arc2, arc3;
-    // Find intersection of arc with bottom of pixel row
-    arc = Math.sqrt(1.0 - Math.sqr(1.0 - i / sizey)) * sizex;
-    // Calculate how many pixels are bg, fg and blended.
-    var n_bg = sizex - Math.ceil(arc);
-    var n_fg = Math.floor(lastarc);
-    var n_aa = sizex - n_bg - n_fg;
-    // Create pixel row wrapper
-    var x = document.createElement("div");
-    var y = d;
-    x.style.margin = "0px " + n_bg + "px";
-    // Make a wrapper per anti-aliased pixel (at least one)
-    for (j = 1; j <= n_aa; j++) {
-      // Calculate coverage per pixel
-      // (approximates circle by a line within the pixel)
-      if (j == 1) {
-        if (j == n_aa) {
-          // Single pixel
-          coverage = ((arc + lastarc) * .5) - n_fg;
+function AddBorder(el,bc){
+var i;
+if(!el.passed){
+    if(el.childNodes.length==1 && el.childNodes[0].nodeType==3){
+        var t=el.firstChild.nodeValue;
+        el.removeChild(el.lastChild);
+        var d=CreateEl("span");
+        d.style.display="block";
+        d.appendChild(document.createTextNode(t));
+        el.appendChild(d);
         }
-        else {
-          // First in a run
-          arc2 = Math.sqrt(1.0 - Math.sqr(1.0 - (n_bg + 1) / sizex)) * sizey;
-          coverage = (arc2 - (sizey - i)) * (arc - n_fg - n_aa + 1) * .5;
+    for(i=0;i<el.childNodes.length;i++){
+        if(el.childNodes[i].nodeType==1){
+            el.childNodes[i].style.borderLeft="1px solid "+bc;
+            el.childNodes[i].style.borderRight="1px solid "+bc;
+            }
         }
-      }
-      else if (j == n_aa) {
-        // Last in a run
-        arc2 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j + 1) / sizex)) * sizey;
-        coverage = 1.0 - (1.0 - (arc2 - (sizey - i))) * (1.0 - (lastarc - n_fg)) * .5;
-      }
-      else {
-        // Middle of a run
-        arc3 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j) / sizex)) * sizey;
-        arc2 = Math.sqrt(1.0 - Math.sqr((sizex - n_bg - j + 1) / sizex)) * sizey;
-        coverage = ((arc2 + arc3) * .5) - (sizey - i);
-      }
-      
-      x.style.backgroundColor = Blend(bk, color, coverage);
-      y.insertBefore(x, y.firstChild);
-      y = x;
-      var x = document.createElement("div");
-      x.style.margin = "0px 1px";
     }
-    x.style.backgroundColor = color;
-    y.insertBefore(x, y.firstChild);
-    lastarc = arc;
-  }
-  el.appendChild(d);
+el.passed=true;
+}
+    
+function AddTop(el,bk,color,bc,cn){
+var i,lim=4,d=CreateEl("b");
+
+if(cn.indexOf("s")>=0) lim=2;
+if(bc) d.className="artop";
+else d.className="rtop";
+d.style.backgroundColor=bk;
+for(i=1;i<=lim;i++){
+    var x=CreateEl("b");
+    x.className=cn + i;
+    x.style.backgroundColor=color;
+    if(bc) x.style.borderColor=bc;
+    d.appendChild(x);
+    }
+el.style.paddingTop=0;
+el.insertBefore(d,el.firstChild);
 }
 
-function getElementsBySelector(selector) {
-  var i;
-  var s = [];
-  var selid = "";
-  var selclass = "";
-  var tag = selector;
-  var objlist = [];
-  if (selector.indexOf(" ") > 0) {  //descendant selector like "tag#id tag"
-    s = selector.split(" ");
-    var fs = s[0].split("#");
-    if (fs.length == 1) {
-      return objlist;
+function AddBottom(el,bk,color,bc,cn){
+var i,lim=4,d=CreateEl("b");
+
+if(cn.indexOf("s")>=0) lim=2;
+if(bc) d.className="artop";
+else d.className="rtop";
+d.style.backgroundColor=bk;
+for(i=lim;i>0;i--){
+    var x=CreateEl("b");
+    x.className=cn + i;
+    x.style.backgroundColor=color;
+    if(bc) x.style.borderColor=bc;
+    d.appendChild(x);
     }
-    return document.getElementById(fs[1]).getElementsByTagName(s[1]);
-  }
-  if (selector.indexOf("#") > 0) { //id selector like "tag#id"
-    s = selector.split("#");
-    tag = s[0];
-    selid = s[1];
-  }
-  if (selid != "") {
-    objlist.push(document.getElementById(selid));
-    return objlist;
-  }
-  if (selector.indexOf(".") > 0) {  //class selector like "tag.class"
-    s = selector.split(".");
-    tag = s[0];
-    selclass = s[1];
-  }
-  var v = document.getElementsByTagName(tag);  // tag selector like "tag"
-  if (selclass == "") {
-    return v;
-  }
-  for (i = 0; i < v.length; i++) {
-    if (v[i].className == selclass) {
-      objlist.push(v[i]);
+el.style.paddingBottom=0;
+el.appendChild(d);
+}
+
+function CreateEl(x){
+if(isXHTML) return(document.createElementNS('http://www.w3.org/1999/xhtml',x));
+else return(document.createElement(x));
+}
+
+function getElementsBySelector(selector){
+var i,selid="",selclass="",tag=selector,f,s=[],objlist=[];
+
+if(selector.indexOf(" ")>0){  //descendant selector like "tag#id tag"
+    s=selector.split(" ");
+    var fs=s[0].split("#");
+    if(fs.length==1) return(objlist);
+    f=document.getElementById(fs[1]);
+    if(f) return(f.getElementsByTagName(s[1]));
+    return(objlist);
     }
-  }
-  return objlist;
+if(selector.indexOf("#")>0){ //id selector like "tag#id"
+    s=selector.split("#");
+    tag=s[0];
+    selid=s[1];
+    }
+if(selid!=""){
+    f=document.getElementById(selid);
+    if(f) objlist.push(f);
+    return(objlist);
+    }
+if(selector.indexOf(".")>0){  //class selector like "tag.class"
+    s=selector.split(".");
+    tag=s[0];
+    selclass=s[1];
+    }
+var v=document.getElementsByTagName(tag);  // tag selector like "tag"
+if(selclass=="")
+    return(v);
+for(i=0;i<v.length;i++){
+    if(v[i].className.indexOf(selclass)>=0){
+        objlist.push(v[i]);
+        }
+    }
+return(objlist);
+}
+
+function Mix(c1,c2){
+var i,step1,step2,x,y,r=new Array(3);
+if(c1.length==4)step1=1;
+else step1=2;
+if(c2.length==4) step2=1;
+else step2=2;
+for(i=0;i<3;i++){
+    x=parseInt(c1.substr(1+step1*i,step1),16);
+    if(step1==1) x=16*x+x;
+    y=parseInt(c2.substr(1+step2*i,step2),16);
+    if(step2==1) y=16*y+y;
+    r[i]=Math.floor((x*50+y*50)/100);
+    }
+return("#"+r[0].toString(16)+r[1].toString(16)+r[2].toString(16));
 }

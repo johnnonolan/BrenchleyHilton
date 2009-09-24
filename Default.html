@@ -6,15 +6,16 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<link rel="stylesheet" type="text/css" href="style/style.css" >
 	<title>Woodlands Cottage - B &amp B Brenchley, Kent</title>
-	
-    <script type="text/javascript" src="javascript/nifty.js"></script>
+    <script type="text/javascript" src="niftycube.js"></script> 
 
 	<script type="text/javascript">
 	  window.onload = function() {
-	    if (!NiftyCheck()) {
-	      return;
-	    }
-	    Rounded("div#nifty", "#377CB1", "#9BD1FA", 30, 30);
+
+		Nifty("div#header","big");
+		Nifty("div#nav","big");
+		Nifty("div#content","big");
+		Nifty("div#sidebar","big");
+		Nifty("div#footer","big");
 	  }
 	</script>
 	
@@ -57,7 +58,7 @@
 
 	</div>
 	<div id="sidebar">
-		<h2>Details</h2>
+		<!-- <h2>Details</h2> -->
 <!-- 		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit...</p> -->
 		<ul>
 		<li><a href="#">Rates</a></li>
