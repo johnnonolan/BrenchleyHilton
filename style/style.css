@@ -1,6 +1,6 @@
 		body, html {
 			color : black;
-			background : #BFBF30;
+			background : #FFF;
 			padding: 0;
 			margin: 0;
 			font-family : Helvetica, Arial,  sans-serif;
@@ -9,7 +9,7 @@
 	
 		#header {
 			padding:5px 10px;
-			background:#FFDE40;
+			background:#FFF;
 		}
 		
 		
@@ -17,7 +17,7 @@
 			font-family : Arial, Helvetica, sans-serif;
 			font-weight : bold;
 			/* color : blue; */
-			background-color : #82b22c;
+			background-color : #FFF;
 			/* background-color : #639a00;			 */
 			float : left;
 		}
@@ -26,7 +26,9 @@
 		#nav {
 			padding:5px 10px;
 			/* background:#c99; */
-			background-color : #ffd300;
+			background-color : #FFF;
+			border-style:dotted;	
+			border-width:1px;	
 		}
 
 		
@@ -58,14 +60,15 @@
 			width:750px;
 			margin: 0 auto;
 			/* background:BFBF30 */
-			 background:#FFE773; 
+			 background:#FFF; 
 		}
 		
 		
 		#footer {
 			clear:both;
-			background:#A68900;
+			background:#FFF;
 			padding:5px 10px;
+			font-size: smaller;
 		}
 		#sidebar {
 			 float:right;
@@ -77,6 +80,8 @@
 
  		img {
 			/*float : right;*/
+			border-color:#000;
+			border-style:solid;
 		}
 		
 		#footer p {
