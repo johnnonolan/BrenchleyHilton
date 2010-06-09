@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.woodlands-cottage.com/</loc>
+  <lastmod>2009-10-26T23:10:39+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://www.woodlands-cottage.com/Directions.html</loc>
+  <lastmod>2009-10-26T23:10:41+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.woodlands-cottage.com/CottageViews.html</loc>
+  <lastmod>2009-10-26T23:10:38+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.woodlands-cottage.com/Rates.html</loc>
+  <lastmod>2009-10-26T23:10:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.woodlands-cottage.com/ThingsToDo.html</loc>
+  <lastmod>2009-10-26T23:10:51+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.woodlands-cottage.com/index.html</loc>
+  <lastmod>2009-10-26T23:10:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+</urlset>
