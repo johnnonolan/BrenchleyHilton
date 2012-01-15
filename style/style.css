@@ -1,32 +1,45 @@
 		body, html {
 			color : black;
-			background : #FFF;
+			/*background : #FFF;*/
 			padding: 0;
 			margin: 0;
-			font-family : Helvetica, Arial,  sans-serif;
+			font-family : 'Overlock', Helvetica, Arial,  sans-serif;
 			/*clear : both;*/
+					/* IE10 */ 
+background-image: -ms-linear-gradient(top right, #FFFFFF 0%, #E8EFD7 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(top right, #FFFFFF 0%, #E8EFD7 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(top right, #FFFFFF 0%, #E8EFD7 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #E8EFD7));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(top right, #FFFFFF 0%, #E8EFD7 100%);
+
+/* Proposed W3C Markup */ 
+background-image: linear-gradient(top right, #FFFFFF 0%, #E8EFD7 100%);
 		}
 	
 		#header {
 			padding:5px 10px;
-			background:#FFF;
 		}
 		
 		
 		#menu {
-			font-family : Arial, Helvetica, sans-serif;
+			font-family : 'Overlock', Arial, Helvetica, sans-serif;
 			font-weight : bold;
-			/* color : blue; */
-			background-color : #FFF;
-			/* background-color : #639a00;			 */
-			float : left;
+			float : right;
 		}
 		
 		
 		#nav {
 			padding:5px 10px;
 			/* background:#c99; */
-			background-color : #FFF;
+			/*background-color : #FFF;*/
 			border-style:dotted;	
 			border-width:1px;	
 		}
@@ -52,21 +65,18 @@
 			float:left;
 			width:480px;
 			padding:10px;
-			background:#FFF;
 		}
 		
 		
 		#wrap {
 			width:750px;
 			margin: 0 auto;
-			/* background:BFBF30 */
-			 background:#FFF; 
+	 
 		}
 		
 		
 		#footer {
 			clear:both;
-			background:#FFF;
 			padding:5px 10px;
 			font-size: smaller;
 		}
@@ -74,12 +84,27 @@
 			 float:right;
 			 width:230px;
 			 padding : 10px;
-			 background:#FFE773;
+			/* background:#FFE773;*/
 		 }
-		 
+		 li.first {
+		 	background:#00E760;
+		 }
+		 li.second {
+		 	background:#AAE760;
+		 }
+		 li.third {
+		 	background:#DDE760;
+		 }
+
+		 #sidebar li {	
+		    list-style : none;
+		    border-bottom-right-radius: 15px;
+		    border-top-right-radius: 15px;
+		    padding : 8px;
+		    margin : 2px
+		 }
 
  		img {
-			/*float : right;*/
 			border-color:#000;
 			border-style:solid;
 		}
@@ -95,7 +120,7 @@
 		
 		p {
 			text-indent: 2em; 
-			font: "Lucida Console", sans-serif;
+			font: 'Overlock',"Lucida Console", sans-serif;
 			text-align: center;
 		}
 		
@@ -111,9 +136,15 @@
 		h2 {
 			margin:0 0 1em;
 		}
-		h1, h2, h3{
-			font-family: Arial, sans-serif;
+		h1, h2 {
+			font-family: 'Tangerine', sans-serif;
+			font-size: 40px;
 		}
+		
+		h3 {
+			font-family: 'Overlock', sans-serif;
+		}
+		
 		
 			* html #footer {
 		height:1px;
@@ -135,5 +166,7 @@
 		 font-size: 1.5em;
 
 		}
+		
+
 
 		
